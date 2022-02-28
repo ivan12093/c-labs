@@ -6,13 +6,9 @@ unsigned int gcd(unsigned int a, unsigned int b)
 	while (a && b)
 	{
 		if (a > b)
-		{
 			a %= b;
-		}
 		else
-		{
 			b %= a;
-		}
 	}
 
 	return a ? a : b;
@@ -24,9 +20,7 @@ int main(void)
 	
 	printf("Enter two natural numbers separated by a space:\n");
 	if (scanf("%u%u", &a, &b) != 2)
-	{
 		return EXIT_FAILURE;
-	}
 
 	unsigned int answer = gcd(a, b);
 

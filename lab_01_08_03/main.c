@@ -15,13 +15,11 @@ uint32_t swap_bits(uint32_t number)
 
 void print_bin(uint32_t number, unsigned char depth)
 {
-	if (!number && depth == 32)
-	{
-		return;
-	}
-	
-	print_bin(number / 2, depth + 1);
-	printf("%u", number % 2);
+	for (int i = 31; i >= 0; --i)
+    {
+        char current_bit = (number >> i) & 1;
+        printf("%u", current_bit); 
+    }
 }
 
 int main(void)

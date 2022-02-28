@@ -9,20 +9,14 @@ int main(void)
 	
 	printf("Enter x:\n");
 	if (scanf("%lf", &x) != 1)
-	{
 		return EXIT_FAILURE;
-	}
 	
 	printf("Enter epsilon:\n");
 	if (scanf("%lf", &eps) != 1)
-	{
 		return EXIT_FAILURE;
-	}
 
 	if (fabs(x) > 1)
-	{
 		return EXIT_FAILURE;
-	}
 	
 	double sum = 0;
 	double elem = x;
