@@ -20,29 +20,29 @@ fi
 input_file="../data/${1}"
 output_file="../data/${2}"
 
-if [[ ! ( -f $input_file && -f $output_file ) ]]; then
+if [[ ! ( -f "$input_file" && -f "$output_file" ) ]]; then
     exit 1
 fi
 
 if [ $# -gt 2 ]; then
     keys_file="../data/${3}"
 
-    if [ ! -f $keys_file ];then
+    if [ ! -f "$keys_file" ];then
         exit 2
     fi
 fi
 
 if [ -n "${USE_VALGRIND}" ]; then
-    valgrind ../../app.exe $keys_file < $input_file > "test_out.txt"
+    valgrind ../../app.exe "$keys_file" < "$input_file" > "test_out.txt"
 else
-    ../../app.exe $keys_file < $input_file > "test_out.txt"
+    ../../app.exe "$keys_file" < "$input_file" > "test_out.txt"
 fi
 
 if [ $? -ne 0 ]; then
     exit 3
 fi
 
-./comparator.sh $output_file test_out.txt
+./comparator.sh "$output_file" "test_out.txt"
 
 if [ $? -eq 0 ]; then
     exit 0
