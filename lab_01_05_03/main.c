@@ -1,31 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-unsigned int gcd(unsigned int a, unsigned int b)
+int gcd(int a, int b)
 {
-	while (a && b)
-	{
-		if (a > b)
-			a %= b;
-		else
-			b %= a;
-	}
+    while (a && b)
+    {
+        if (a > b)
+            a %= b;
+        else
+            b %= a;
+    }
 
-	return a ? a : b;
+    return a ? a : b;
 }
 
 int main(void)
 {
-	unsigned int a, b;
-	
-	printf("Enter two natural numbers separated by a space:\n");
-	if (scanf("%u%u", &a, &b) != 2)
-		return EXIT_FAILURE;
+    int a, b;
+    
+    printf("Enter two natural numbers separated by a space:\n");
+    if (scanf("%d%d", &a, &b) != 2)
+        return EXIT_FAILURE;
 
-	unsigned int answer = gcd(a, b);
+    if (a <= 0 || b <= 0)
+        return EXIT_FAILURE;
 
-	printf("GCD is: %u\n", answer);
-	return EXIT_SUCCESS;
-	
+    int answer = gcd(a, b);
+
+    printf("GCD is: %d\n", answer);
+    return EXIT_SUCCESS;
 }
 
