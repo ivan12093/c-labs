@@ -19,15 +19,21 @@ failed_tests=0
 counter=1
 update_counter "$counter"
 next_pattern="../data/pos_${test_number}"
+sec_next_pattern="../data/pos_${counter}"
 
 echo -e "${CYAN}EXECUTING POSITIVE TESTS${NORMAL}"
 
-while [ -f "${next_pattern}_in.txt" ]; do
+while [ -f "${next_pattern}_in.txt" -o -f "${sec_next_pattern}_in.txt" ]; do
 
-	if [ -f "${next_pattern}_args.txt" ]; then
-		./pos_case.sh "${next_pattern}_in.txt" "${next_pattern}_out.txt" "${next_pattern}_args.txt"
+    cur_pattern="${next_pattern}"
+    if [ ! -f "${cur_pattern}_in.txt" ]; then
+        cur_pattern="$sec_next_pattern"
+    fi
+
+	if [ -f "${cur_pattern}_args.txt" ]; then
+		./pos_case.sh "${cur_pattern}_in.txt" "${cur_pattern}_out.txt" "${cur_pattern}_args.txt"
     else
-        ./pos_case.sh "${next_pattern}_in.txt" "${next_pattern}_out.txt"
+        ./pos_case.sh "${cur_pattern}_in.txt" "${cur_pattern}_out.txt"
     fi
 	
 	return_code=$?
@@ -41,6 +47,8 @@ while [ -f "${next_pattern}_in.txt" ]; do
     counter=$((counter+1))
     update_counter $counter
 	next_pattern="../data/pos_${test_number}"
+    sec_next_pattern="../data/pos_${counter}"
+
 done
 
 echo -e "${CYAN}EXECUTING NEGATIVE TESTS${NORMAL}"
@@ -48,13 +56,19 @@ echo -e "${CYAN}EXECUTING NEGATIVE TESTS${NORMAL}"
 counter=1
 update_counter "$counter"
 next_pattern="../data/neg_${test_number}"
+sec_next_pattern="../data/neg_${counter}"
 
-while [ -f "${next_pattern}_in.txt" ]; do
+while [ -f "${next_pattern}_in.txt" -o -f "${sec_next_pattern}_in.txt" ]; do
+
+    cur_pattern="${next_pattern}"
+    if [ ! -f "${cur_pattern}_in.txt" ]; then
+        cur_pattern="$sec_next_pattern"
+    fi
 
     if [ -f "${next_pattern}_args.txt" ]; then
-        ./neg_case.sh "${next_pattern}_in.txt" "${next_pattern}_args.txt"
+        ./neg_case.sh "${cur_pattern}_in.txt" "${cur_pattern}_args.txt"
     else
-        ./neg_case.sh "${next_pattern}_in.txt"
+        ./neg_case.sh "${cur_pattern}_in.txt"
     fi
 
 	return_code=$?
@@ -68,6 +82,7 @@ while [ -f "${next_pattern}_in.txt" ]; do
     counter=$((counter+1))
     update_counter $counter 
     next_pattern="../data/neg_${test_number}"
+    sec_next_pattern="../data/neg_${counter}"
 
 done
 
