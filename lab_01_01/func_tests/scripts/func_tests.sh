@@ -23,7 +23,7 @@ sec_next_pattern="../data/pos_${counter}"
 
 echo -e "${CYAN}EXECUTING POSITIVE TESTS${NORMAL}"
 
-while [ -f "${next_pattern}_in.txt" -o -f "${sec_next_pattern}_in.txt" ]; do
+while [ -f "${next_pattern}_in.txt" ] || [ -f "${sec_next_pattern}_in.txt" ]; do
 
     cur_pattern="${next_pattern}"
     if [ ! -f "${cur_pattern}_in.txt" ]; then
@@ -58,7 +58,7 @@ update_counter "$counter"
 next_pattern="../data/neg_${test_number}"
 sec_next_pattern="../data/neg_${counter}"
 
-while [ -f "${next_pattern}_in.txt" -o -f "${sec_next_pattern}_in.txt" ]; do
+while [ -f "${next_pattern}_in.txt" ] || [ -f "${sec_next_pattern}_in.txt" ]; do
 
     cur_pattern="${next_pattern}"
     if [ ! -f "${cur_pattern}_in.txt" ]; then
