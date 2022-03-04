@@ -6,12 +6,17 @@ int gcd(int a, int b)
     while (a && b)
     {
         if (a > b)
-            a %= b;
+        {
+            if ((a %= b) == 0)
+                return b;
+        }
         else
+        {
             b %= a;
+        }
     }
-
-    return a ? a : b;
+    
+    return a;
 }
 
 int main(void)

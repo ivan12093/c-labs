@@ -3,7 +3,7 @@
 #include <math.h>
 
 int position_of_dot(double x1, double y1, double x2,
-                    double y2, double x3, double y3)
+double y2, double x3, double y3)
 {
     double x_vec_line = x2 - x1;
     double y_vec_line = y2 - y1;
