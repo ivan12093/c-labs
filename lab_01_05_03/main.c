@@ -3,17 +3,11 @@
 
 int gcd(int a, int b)
 {
-    while (a && b)
+    while (b)
     {
-        if (a > b)
-        {
-            if ((a %= b) == 0)
-                return b;
-        }
-        else
-        {
-            b %= a;
-        }
+        int remainder = a % b;
+        a = b;
+        b = remainder;
     }
     
     return a;
