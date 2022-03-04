@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
+#include <inttypes.h>
 
 uint32_t swap_bits(uint32_t number)
 {
@@ -17,8 +17,8 @@ void print_bin(uint32_t number)
 {
     for (int i = 31; i >= 0; --i)
     {
-        char current_bit = (number >> i) & 1;
-        printf("%u", current_bit); 
+        uint32_t current_bit = (number >> i) & 1;
+        printf("%"PRIu32"", current_bit); 
     }
 }
 
@@ -27,7 +27,7 @@ int main(void)
     uint32_t number;
     
     printf("Enter unsigned number:\n");
-    if (scanf("%u", &number) != 1)
+    if (scanf("%"PRIu32"", &number) != 1)
     {
         printf("Error: can`t recognize input as unsigned number");
         return EXIT_FAILURE;
