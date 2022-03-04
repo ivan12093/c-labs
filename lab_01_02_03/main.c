@@ -23,7 +23,7 @@ int main(void)
     if (a < eps || b < eps)
         return EXIT_FAILURE;
     
-    double angle_radians = angle_degrees * PI / 180;
+    double angle_radians = angle_degrees * PI / 180.0;
     
     double square = a * b / 2 * fabs(sin(angle_radians));
     

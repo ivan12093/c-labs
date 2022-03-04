@@ -34,7 +34,7 @@ int main(void)
     {
         sum += elem;
         ++n;
-	elem = -1 * elem * x * x * (2 * n - 1) / (2 * n + 1);
+        elem = -1 * elem * x * x * (2 * n - 1) / (2 * n + 1);
     }
 
     double accurate_value = atan(x);
