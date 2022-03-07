@@ -4,3 +4,6 @@
 *.pch
 *.gch
 *.swp
+*.gcda
+*.gcno
+*.gcov

@@ -27,7 +27,7 @@ int main(void)
     uint32_t number;
     
     printf("Enter unsigned number:\n");
-    if (scanf("%"PRIu32, &number) != 1)
+    if (scanf("%"SCNu32, &number) != 1)
     {
         printf("Error: can`t recognize input as unsigned number");
         return EXIT_FAILURE;

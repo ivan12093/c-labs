@@ -24,18 +24,20 @@ if [[ ! ( -f "$input_file" && -f "$output_file" ) ]]; then
     exit 1
 fi
 
+keys=""
+
 if [ $# -gt 2 ]; then
     keys_file="../data/${3}"
-
     if [ ! -f "$keys_file" ];then
         exit 2
     fi
+	keys=$(cat "$keys_file")
 fi
 
 if [ -n "${USE_VALGRIND}" ]; then
-    valgrind ../../app.exe "$keys_file" < "$input_file" > "test_out.txt"
+    valgrind ../../app.exe "$keys" < "$input_file" > "test_out.txt"
 else
-    ../../app.exe "$keys_file" < "$input_file" > "test_out.txt"
+    ../../app.exe "$keys" < "$input_file" > "test_out.txt"
 fi
 
 return_code=$?
