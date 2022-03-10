@@ -45,7 +45,6 @@ bool is_narcissistic(int a)
     {
         check_sum += pow_int(a_copy % 10, length);
         a_copy /= 10;
-
     }
 
     return check_sum == a;
