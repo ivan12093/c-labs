@@ -4,6 +4,7 @@
 #define ARRAY_SIZE 10
 
 #define INCORRECT_ARRAY_ELEMENT 1
+#define EMPTY_ARRAY 2
 #define ARRAY_OVERFLOW 100
 
 
@@ -61,6 +62,9 @@ int main(void)
     printf("Enter elements of the array: \n");
     if (scan_array(numbers, &array_size) == ARRAY_OVERFLOW)
         return_code = ARRAY_OVERFLOW;
+
+    if (array_size < 1)
+        return EMPTY_ARRAY;
 
     bubble_sort(numbers, array_size);
     printf("Sorted array:\n");

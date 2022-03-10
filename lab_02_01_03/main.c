@@ -66,7 +66,8 @@ int main(void)
 
     double geom_mean;
     if (geometric_mean(numbers, array_size, &geom_mean))
-    {   printf("Error: No positive elements in the array\n");
+    {
+        printf("Error: No positive elements in the array\n");
         return NO_POSITIVE_ELEMENTS;
     }
 

@@ -38,7 +38,7 @@ else
 fi
 
 return_code=$?
-if if [ "$return_code" -ne 0 ] && [ "$return_code" -ne 100 ]; then
+if [ "$return_code" -ne 0 ] && [ "$return_code" -ne 100 ]; then
     exit 0
 fi
 
