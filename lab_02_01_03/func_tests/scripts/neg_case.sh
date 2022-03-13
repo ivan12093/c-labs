@@ -32,7 +32,7 @@ if [ $# -gt 1 ]; then
 fi
 
 if [ -n "${USE_VALGRIND}" ]; then
-    eval "valgrind ../../app.exe '$keys' < ${input_file} > test_out.txt"
+    eval "valgrind --log-file=../../valgrind_$(date +%N).log ../../app.exe '$keys' < ${input_file} > test_out.txt"
 else
     eval "../../app.exe '$keys' < ${input_file} > test_out.txt"
 fi
