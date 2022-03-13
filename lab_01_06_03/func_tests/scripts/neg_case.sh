@@ -15,7 +15,7 @@ if [ $# -lt 1 ]; then
     exit 4
 fi
 
-input_file="../data/${1}"
+input_file="${1}"
 
 if [ ! -f "$input_file" ]; then
     exit 1
@@ -24,7 +24,7 @@ fi
 keys=""
 
 if [ $# -gt 1 ]; then
-    keys_file="../data/${3}"
+    keys_file="${2}"
     if [ ! -f "$keys_file" ];then
         exit 2
     fi
@@ -32,9 +32,9 @@ if [ $# -gt 1 ]; then
 fi
 
 if [ -n "${USE_VALGRIND}" ]; then
-    valgrind ../../app.exe "$keys" < "$input_file" > "test_out.txt"
+    eval "valgrind ../../app.exe '$keys' < ${input_file} > test_out.txt"
 else
-    ../../app.exe "$keys" < "$input_file" > "test_out.txt"
+    eval "../../app.exe '$keys' < ${input_file} > test_out.txt"
 fi
 
 return_code=$?
