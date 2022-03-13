@@ -9,15 +9,12 @@ int main(void)
 
     printf("Enter a sequence of positive numbers. "
         "To stop typing, enter a negative number.\n");
-    if (scanf("%lf", &x) != 1)
+    if (scanf("%lf", &x) != 1 || x < 0.0)
         return EXIT_FAILURE;
 
-    if (x < 0)
-        return EXIT_FAILURE;
-
-    for (int i = 1; !(x < 0); ++i)
+    for (int i = 1; x >= 0.0; ++i)
     {
-        power *= 1 / (x + i);
+        power *= 1.0 / (x + i);
         if (scanf("%lf", &x) != 1)
             return EXIT_FAILURE;
     }

@@ -29,7 +29,7 @@ int main(void)
     printf("Enter unsigned number:\n");
     if (scanf("%"SCNu32, &number) != 1)
     {
-        printf("Error: can`t recognize input as unsigned number");
+        printf("Error: can't recognize input as unsigned number");
         return EXIT_FAILURE;
     }
     
