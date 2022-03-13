@@ -8,16 +8,20 @@ int main(void)
     double time;
     
     printf("Enter start speed:\n");
-    scanf("%lf", &start_speed);
-
+    if (scanf("%lf", &start_speed) != 1)
+        return EXIT_FAILURE;
+    
     printf("Enter acceleration:\n");
-    scanf("%lf", &acceleration);
+    if (scanf("%lf", &acceleration) != 1)
+        return EXIT_FAILURE;
     
     printf("Enter time:\n");
-    scanf("%lf", &time);
+    if (scanf("%lf", &time) != 1 || time < 0)
+        return EXIT_FAILURE;
 
     double moving = start_speed * time + acceleration * time * time / 2.0;
     
     printf("Moving is: %.6lf metres\n", moving);
     return EXIT_SUCCESS;
 }
+

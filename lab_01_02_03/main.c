@@ -6,18 +6,28 @@
 
 int main(void)
 {
+    const double eps = 1e-8; 
+
     double a, b;
     double angle_degrees;
     
     printf("Enter the two sides of the triangle separated by a space:\n");
-    scanf("%lf%lf", &a, &b);
+    if (scanf("%lf%lf", &a, &b) != 2)
+        return EXIT_FAILURE;
     
     printf("Enter the angle in degrees between the two sides:\n");
-    scanf("%lf", &angle_degrees);
-
+    if (scanf("%lf", &angle_degrees) != 1)
+        return EXIT_FAILURE;
+    
+    if (a < eps || b < eps)
+        return EXIT_FAILURE;
+    
     double angle_radians = angle_degrees * PI / 180.0;
     
     double square = a * b / 2.0 * fabs(sin(angle_radians));
+    
+    if (square < eps)
+        return EXIT_FAILURE;
     
     printf("Square of triangle: %.6lf\n", square);
     return EXIT_SUCCESS;

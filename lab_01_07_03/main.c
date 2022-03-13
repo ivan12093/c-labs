@@ -13,9 +13,7 @@ int main(void)
     
     printf("Enter epsilon:\n");
     if (scanf("%lf", &eps) != 1 || fabs(x) < eps)
-    {
         return EXIT_FAILURE;
-    }
     
     double sum = 0;
     double elem = x;
