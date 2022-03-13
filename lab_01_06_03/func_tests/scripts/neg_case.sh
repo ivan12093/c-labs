@@ -30,7 +30,7 @@ if [ $# -gt 1 ]; then
     fi
     keys=$(cat "$keys_file")
 fi
-USE_VALGRIND="YES"
+
 if [ -n "${USE_VALGRIND}" ]; then
     eval "valgrind --log-file=../../valgrind_$(date +%N).log ../../app.exe '$keys' < ${input_file} > test_out.txt"
 else
