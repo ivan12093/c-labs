@@ -3,3 +3,8 @@
 *.o
 *.pch
 *.gch
+*.swp
+*.gcda
+*.gcno
+*.gcov
+*.log
