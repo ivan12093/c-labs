@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define ARRAY_SIZE 10
+#define MIN_ARRAY_SIZE 1
+#define MAX_ARRAY_SIZE 10
+#define ARRAY_CAPACITY 1024
 
 #define INCORRECT_ARRAY_ELEMENT 1
 #define EMPTY_ARRAY 2
@@ -51,14 +53,14 @@ int print_array(const int array[], size_t array_size)
 int main(void)
 {
     int return_code = EXIT_SUCCESS;
-    size_t array_size = ARRAY_SIZE;
-    int numbers[ARRAY_SIZE];
+    size_t array_size = MAX_ARRAY_SIZE;
+    int numbers[ARRAY_CAPACITY];
 
     printf("Enter elements of the array: \n");
     if (scan_array(numbers, &array_size) == ARRAY_OVERFLOW)
         return_code = ARRAY_OVERFLOW;
 
-    if (array_size < 1)
+    if (array_size < MIN_ARRAY_SIZE)
         return EMPTY_ARRAY;
 
     bubble_sort(numbers, array_size);

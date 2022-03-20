@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define ARRAY_SIZE 10
+#define MIN_ARRAY_SIZE 2
+#define MAX_ARRAY_SIZE 10
+#define ARRAY_CAPACITY 1024
 
 #define INCORRECT_ARRAY_ELEMENT 1
 #define INCORRECT_ARRAY_SIZE 2
@@ -34,13 +36,13 @@ int main(void)
     size_t array_size;
 
     printf("Enter size of array: ");
-    if (scanf("%zu", &array_size) != 1 || array_size < 2 || array_size > 10)
+    if (scanf("%zu", &array_size) != 1 || array_size < MIN_ARRAY_SIZE || array_size > MAX_ARRAY_SIZE)
     {
         printf("Error: Incorrect size of array\n");
         return INCORRECT_ARRAY_SIZE;
     }
 
-    int numbers[ARRAY_SIZE];
+    int numbers[ARRAY_CAPACITY];
     printf("Enter elements of the array: \n");
     if (scan_array(numbers, numbers + array_size))
     {
