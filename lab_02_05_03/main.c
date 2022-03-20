@@ -10,25 +10,21 @@
 int scan_array(int *start, int *end)
 {
     for (int *i = start; i != end; ++i)
-    {
         if (scanf("%d", i) != 1)
             return INCORRECT_ARRAY_ELEMENT;
-    }
-
     return EXIT_SUCCESS;
 }
 
 
-int min_neighboor_pair(int *start, int *end)
+int min_neighboor_pair(const int *start, const int *end)
 {
     int min = *start * *(start + 1);
-    for (int *i = start + 1; i != end - 1; ++i)
+    for (const int *i = start + 1; i != end - 1; ++i)
     {
         int pair_product = *i * *(i + 1);
         if (pair_product < min)
             min = pair_product;
     }
-
     return min;
 }
 

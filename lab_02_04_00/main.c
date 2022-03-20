@@ -11,17 +11,13 @@
 void bubble_sort(int array[], size_t array_size)
 {
     for (size_t i = array_size; i > 0; --i)
-    {
         for (size_t j = 0; j < i - 1; ++j)
-        {
             if (array[j + 1] < array[j])
             {
                 int tmp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = tmp;
             }
-        }
-    }
 }
 
 
@@ -43,12 +39,11 @@ int scan_array(int array[], size_t *array_size)
 }
 
 
-int print_array(int array[], size_t array_size)
+int print_array(const int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         printf("%d ", array[i]);
     printf("\n");
-
     return EXIT_SUCCESS;
 }
 

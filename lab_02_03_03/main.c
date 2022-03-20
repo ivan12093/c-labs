@@ -15,7 +15,6 @@ int reverse_int(int a)
         result = result * 10 + a % 10;
         a /= 10;
     }
-
     return result;
 }
 
@@ -25,7 +24,6 @@ int insert_in_array(int array[], int elem, size_t index, size_t len)
     for (size_t i = len; i > index; --i)
         array[i] = array[i - 1];
     array[index] = elem;
-
     return EXIT_SUCCESS;
 }
 
@@ -33,16 +31,13 @@ int insert_in_array(int array[], int elem, size_t index, size_t len)
 int scan_array(int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
-    {
         if (scanf("%d", &array[i]) != 1)
             return INCORRECT_ARRAY_ELEMENT;
-    }
-
     return EXIT_SUCCESS;
 }
 
 
-int print_array(int array[], size_t array_size)
+int print_array(const int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         printf("%d ", array[i]);
@@ -71,7 +66,6 @@ int main(void)
     }
 
     for (size_t i = 0; i < array_size; ++i)
-    {
         if (numbers[i] > 0)
         {
             int reverse = reverse_int(numbers[i]);
@@ -79,7 +73,6 @@ int main(void)
             ++array_size;
             ++i;
         }
-    }
 
     printf("The modified array:\n");
     print_array(numbers, array_size);

@@ -21,7 +21,6 @@ int pow_int(int basis, int exponent)
         basis *= basis;
         exponent /= 2;
     }
-
     return result;
 }
 
@@ -46,7 +45,6 @@ bool is_narcissistic(int a)
         check_sum += pow_int(a_copy % 10, length);
         a_copy /= 10;
     }
-
     return check_sum == a;
 }
 
@@ -54,15 +52,13 @@ bool is_narcissistic(int a)
 int scan_array(int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
-    {
         if (scanf("%d", &array[i]) != 1)
             return INCORRECT_ARRAY_ELEMENT;
-    }
     return EXIT_SUCCESS;
 }
 
 
-int print_array(int array[], size_t array_size)
+int print_array(const int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         printf("%d ", array[i]);
@@ -93,13 +89,11 @@ int main(void)
     int narcissistic_numbers[ARRAY_SIZE];
     size_t len_narciss = 0;
     for (size_t i = 0; i < array_size; ++i)
-    {
         if (is_narcissistic(numbers[i]))
         {
             narcissistic_numbers[len_narciss] = numbers[i];
             ++len_narciss;
         }
-    }
 
     if (!len_narciss)
     {
