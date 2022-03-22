@@ -11,24 +11,21 @@
 #define NO_POSITIVE_ELEMENTS 3
 
 
-int geometric_mean_of_positives(int array[], size_t array_size, double *result)
+double geometric_mean_of_positives(int array[], size_t array_size)
 {
-    int count_positive = 0;
+    int count_positives = 0;
     double product = 1.0;
     
     for (size_t i = 0; i < array_size; ++i)
         if (array[i] > 0)
         {
             product *= array[i];
-            ++count_positive;
+            ++count_positives;
         }
+    if (count_positives)
+        return pow(product, 1.0 / count_positives);
 
-    if (count_positive)
-    {
-        *result = pow(product, 1.0 / count_positive);
-        return EXIT_SUCCESS;
-    }
-    return NO_POSITIVE_ELEMENTS;
+    return -1.0;
 }
 
 
@@ -60,8 +57,8 @@ int main(void)
         return INCORRECT_ARRAY_ELEMENT;
     }
 
-    double geom_mean;
-    if (geometric_mean_of_positives(numbers, array_size, &geom_mean))
+    double geom_mean = geometric_mean_of_positives(numbers, array_size);
+    if (geom_mean < 0)
     {
         printf("Error: No positive elements in the array\n");
         return NO_POSITIVE_ELEMENTS;

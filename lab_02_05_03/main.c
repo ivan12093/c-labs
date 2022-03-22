@@ -51,7 +51,7 @@ int main(void)
     }
 
     int min_pair = min_neighboor_pair(numbers, numbers + array_size);
-    printf("Minimal close pair value: %d\n", min_pair);
+    printf("Minimal pair: %d\n", min_pair);
 
     return EXIT_SUCCESS;
 }
