@@ -100,7 +100,7 @@ int main(void)
         return INCORRECT_ARRAY_ELEMENT;
     }
 
-    int narcissistic_numbers[ARRAY_CAPACITY * 2];
+    int narcissistic_numbers[ARRAY_CAPACITY];
     size_t len_narciss = copy_if_narcissistic(numbers, array_size, narcissistic_numbers);
 
     if (!len_narciss)
