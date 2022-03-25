@@ -40,12 +40,11 @@ int scan_array(int array[], size_t *array_size)
 }
 
 
-int print_array(const int array[], size_t array_size)
+void print_array(const int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         printf("%d ", array[i]);
     printf("\n");
-    return EXIT_SUCCESS;
 }
 
 

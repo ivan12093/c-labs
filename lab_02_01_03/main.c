@@ -33,7 +33,7 @@ int scan_array(int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         if (scanf("%d", &array[i]) != 1)
-            return INCORRECT_ARRAY_ELEMENT;
+            return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
 

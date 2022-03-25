@@ -13,7 +13,7 @@ int scan_array(int *start, int *end)
 {
     for (int *i = start; i != end; ++i)
         if (scanf("%d", i) != 1)
-            return INCORRECT_ARRAY_ELEMENT;
+            return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
 

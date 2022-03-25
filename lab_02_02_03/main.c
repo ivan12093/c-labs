@@ -55,17 +55,29 @@ int scan_array(int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         if (scanf("%d", &array[i]) != 1)
-            return INCORRECT_ARRAY_ELEMENT;
+            return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
 
 
-int print_array(const int array[], size_t array_size)
+void print_array(const int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         printf("%d ", array[i]);
     printf("\n");
-    return EXIT_SUCCESS;
+}
+
+
+size_t copy_if_narcissistic(const int src[], size_t array_size, int dest[])
+{
+    size_t len_narciss = 0;
+    for (size_t i = 0; i < array_size; ++i)
+        if (is_narcissistic(src[i]))
+        {
+            dest[len_narciss] = src[i];
+            ++len_narciss;
+        }
+    return len_narciss;
 }
 
 
@@ -88,14 +100,8 @@ int main(void)
         return INCORRECT_ARRAY_ELEMENT;
     }
 
-    int narcissistic_numbers[ARRAY_CAPACITY];
-    size_t len_narciss = 0;
-    for (size_t i = 0; i < array_size; ++i)
-        if (is_narcissistic(numbers[i]))
-        {
-            narcissistic_numbers[len_narciss] = numbers[i];
-            ++len_narciss;
-        }
+    int narcissistic_numbers[ARRAY_CAPACITY * 2];
+    size_t len_narciss = copy_if_narcissistic(numbers, array_size, narcissistic_numbers);
 
     if (!len_narciss)
     {
