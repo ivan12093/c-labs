@@ -9,19 +9,19 @@
 #define INCORRECT_ARRAY_SIZE 2
 
 
-int scan_array(int *start, int *end)
+int scan_array(int *begin, int *end)
 {
-    for (int *i = start; i != end; ++i)
+    for (int *i = begin; i < end; ++i)
         if (scanf("%d", i) != 1)
             return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
 
 
-int min_neighboor_pair(const int *start, const int *end)
+int min_neighboor_pair(const int *begin, const int *end)
 {
-    int min = *start * *(start + 1);
-    for (const int *i = start + 1; i != end - 1; ++i)
+    int min = *begin * *(begin + 1);
+    for (const int *i = begin + 1; i < end - 1; ++i)
     {
         int pair_product = *i * *(i + 1);
         if (pair_product < min)
