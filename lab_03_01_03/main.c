@@ -27,15 +27,15 @@ bool is_monotonic(const int array[], size_t array_size)
     {
         new_sign = (array[i + 1] - array[i] > 0) - (array[i + 1] - array[i] < 0);
 
-        if (new_sign)
+        if (sign && new_sign)
         {
-            if (new_sign != sign)
+            if (sign != new_sign)
                 return false;
             sign = new_sign;
         }
     }
 
-    return (!new_sign || sign == new_sign);
+    return (!(sign && new_sign) || sign == new_sign);
 }
 
 
