@@ -25,12 +25,10 @@ bool is_monotonic(const int array[], size_t array_size)
     {
         int new_sign = (array[i + 1] - array[i] > 0) - (array[i + 1] - array[i] < 0);
 
-        if (new_sign)
-        {
-            if (new_sign != sign)
-                return false;
-            sign = new_sign;
-        }
+        if (new_sign != sign)
+            return false;
+        
+        sign = new_sign;
     }
 
     return true;
