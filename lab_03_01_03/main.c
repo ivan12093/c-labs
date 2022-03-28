@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define COLUMN_CAPACITY 1024
-#define ROW_CAPACITY 1024
+#define COLUMN_CAPACITY 256
+#define ROW_CAPACITY 256
 
 #define MAX_ROWS 10
 #define MIN_ROWS 1
@@ -61,7 +61,7 @@ int main(void)
 
     printf("Enter the number of rows and columns in the matrix:\n");
     if (scanf("%zu%zu", &rows, &columns) != 2 || rows > MAX_ROWS || 
-        rows < MIN_ROWS || columns > MAX_ROWS || columns < MIN_ROWS)
+        rows < MIN_ROWS || columns > MAX_COLUMNS || columns < MIN_COLUMNS)
     {
         printf("Error: incorrect matrix size");
         return INCORRECT_MATRIX_SIZE;
