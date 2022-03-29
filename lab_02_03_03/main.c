@@ -9,7 +9,7 @@
 #define INCORRECT_ARRAY_ELEMENT 2
 
 
-int reverse_int(int a)
+int reverse(int a)
 {
     int result = 0;
     while (a)
@@ -33,7 +33,7 @@ size_t insert_reverse_after_positives(int array[], size_t array_size)
         ++modified_array_size;
         if (array[i] > 0)
         {
-            array[modified_array_size] = reverse_int(array[i]);
+            array[modified_array_size] = reverse(array[i]);
             ++modified_array_size;
         }
     }
