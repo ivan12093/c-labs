@@ -19,30 +19,29 @@
 
 bool number_contains_digit(int number, int digit)
 {
-    while (number)
+    number = abs(number);
+    do
     {
         if (number % 10 == digit)
             return true;
         number /= 10;
-    }
+    } while (number);
     return false;
 }
 
 
-size_t delete_columns_if_digit_contains(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int digit)
+size_t del_columns_if_digit_contains(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int digit)
 {
     size_t columns_after = 0;
     for (size_t j = 0; j < columns; ++j)
     {
         bool contains = false;
         for (size_t i = 0; i < rows; ++i)
-        {
             if (number_contains_digit(matrix[i][j], digit))
             {
                 contains = true;
                 break;
             }
-        }
 
         if (!contains)
         {
@@ -106,18 +105,12 @@ int main(void)
         return INCORRECT_KEY_NUMBER;
     }
 
-    columns_after = delete_columns_if_digit_contains(matrix, rows, columns, key_digit);
+    columns = del_columns_if_digit_contains(matrix, rows, columns, key_digit);
 
-    if (!columns_after)
+    if (!columns)
     {
         printf("Matrix is empty");
         return EMPTY_MATRIX;
-    }
-
-    if (columns == columns_after)
-    {
-        printf("Matrix wasn't changed");
-        return MATRIX_WAS_NOT_CHANGED;
     }
 
     printf("Modified matrix:\n");
