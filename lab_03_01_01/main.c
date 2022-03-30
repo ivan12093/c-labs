@@ -14,28 +14,12 @@
 #define INCORRECT_MATRIX_ELEMENT 2
 
 
-bool is_monotonic(const int array[], size_t array_size)
+bool is_symmetrical(const int array[], size_t array_size)
 {
-    if (array_size < 2)
-        return false;
-
-    // sign shows what sequence do: decreasing -1, increasing 1, equality - 0 
-    int sign = (array[1] - array[0] > 0) - (array[1] - array[0] < 0);
-    int new_sign;
-
-    for (size_t i = 1; i < array_size - 1; ++i)
-    {
-        new_sign = (array[i + 1] - array[i] > 0) - (array[i + 1] - array[i] < 0);
-
-        if (sign && new_sign)
-        {
-            if (sign != new_sign)
-                return false;
-            sign = new_sign;
-        }
-    }
-
-    return (!(sign && new_sign) || sign == new_sign);
+    for (size_t i = 0, j = array_size - 1; i < array_size / 2; ++i, --j)
+        if (array[i] != array[j])
+            return false;
+    return true;
 }
 
 
@@ -84,7 +68,7 @@ int main(void)
     }
 
     int mask[COLUMN_CAPACITY];
-    mask_matrix(matrix, rows, columns, mask, is_monotonic);
+    mask_matrix(matrix, rows, columns, mask, is_symmetrical);
 
     printf("Mask for matrix:\n");
     print_array(mask, rows);
