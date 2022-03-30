@@ -14,6 +14,7 @@
 #define INCORRECT_MATRIX_ELEMENT 2
 #define INCORRECT_KEY_NUMBER 3
 #define EMPTY_MATRIX 4
+#define MATRIX_WAS_NOT_CHANGED 5
 
 
 bool number_contains_digit(int number, int digit)
@@ -105,12 +106,18 @@ int main(void)
         return INCORRECT_KEY_NUMBER;
     }
 
-    columns = delete_columns_if_digit_contains(matrix, rows, columns, key_digit);
+    columns_after = delete_columns_if_digit_contains(matrix, rows, columns, key_digit);
 
-    if (!columns)
+    if (!columns_after)
     {
         printf("Matrix is empty");
         return EMPTY_MATRIX;
+    }
+
+    if (columns == columns_after)
+    {
+        printf("Matrix wasn't changed");
+        return MATRIX_WAS_NOT_CHANGED;
     }
 
     printf("Modified matrix:\n");
