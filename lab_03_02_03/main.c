@@ -16,7 +16,19 @@
 #define EMPTY_MATRIX 4
 
 
-size_t delete_columns_if_key_contains(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int key)
+bool number_contains_digit(int number, int digit)
+{
+    while (number)
+    {
+        if (number % 10 == digit)
+            return true;
+        number /= 10;
+    }
+    return false;
+}
+
+
+size_t delete_columns_if_digit_contains(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int digit)
 {
     size_t columns_after = 0;
     for (size_t j = 0; j < columns; ++j)
@@ -24,7 +36,7 @@ size_t delete_columns_if_key_contains(int matrix[][ROW_CAPACITY], size_t rows, s
         bool contains = false;
         for (size_t i = 0; i < rows; ++i)
         {
-            if (matrix[i][j] == key)
+            if (number_contains_digit(matrix[i][j], digit))
             {
                 contains = true;
                 break;
@@ -85,15 +97,15 @@ int main(void)
         return INCORRECT_MATRIX_ELEMENT;
     }
 
-    int key_number;
+    int key_digit;
     printf("Enter key number: ");
-    if (scanf("%d", &key_number) != 1)
+    if (scanf("%d", &key_digit) != 1 || key_digit < 0 || key_digit > 9)
     {
         printf("Error: invalid key number");
         return INCORRECT_KEY_NUMBER;
     }
 
-    columns = delete_columns_if_key_contains(matrix, rows, columns, key_number);
+    columns = delete_columns_if_digit_contains(matrix, rows, columns, key_digit);
 
     if (!columns)
     {
