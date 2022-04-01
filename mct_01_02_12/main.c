@@ -7,6 +7,8 @@
 #define INCORRECT_ARRAY_SIZE 1
 #define INCORRECT_ARRAY_ELEM 2
 
+/* Функция считывает массив из stdout
+принимает целочисленный массив, которы*/
 int scan_array(int array[], size_t n)
 {
     for (size_t i = 0; i < n; ++i)

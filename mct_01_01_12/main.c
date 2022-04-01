@@ -7,13 +7,17 @@
 
 #define MIN_ABS_X 1e-6
 
+/* Функция series принимает точку, в которой вычисляется функция,
+и точность с которой вычисляется функция.
+возвращает значение посчитанное с заданной
+*/
 double series(double x, double eps)
 {
     double elem = x / 2.0; 
     double series_value = elem; 
     for (int i = 1; fabs(elem) > eps * eps; ++i)
     {
-        elem *= -1.0 * x * x * x * (i + 2) / (i + 1) / (i + 3);
+        elem *= -1.0 * x * x * x * (i + 1) / (i * i + 2 * i);
         printf("%lf", elem);
         series_value += elem;
     }
