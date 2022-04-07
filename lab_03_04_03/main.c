@@ -14,39 +14,15 @@
 #define INCORRECT_MATRIX_ELEMENT 2
 
 
-int min(const int array[], size_t len)
+void symmetric_column_swap(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
 {
-    int minimum = array[0];
-    for (size_t i = 1; i < len; ++i)
-        if (array[i] < minimum)
-            minimum = array[i];
-    return minimum;
-}
-
-
-void swap_array(int first[], int second[], size_t len)
-{
-    for (size_t i = 0; i < len; ++i)
-    {
-        int tmp = first[i];
-        first[i] = second[i];
-        second[i] = tmp;
-    }
-}
-
-
-int compare_by_smallest_elem(const int first[], const int second[], size_t len)
-{
-    return min(second, len) - min(first, len);
-}
-
-
-void sort_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int (*compar)(const int[], const int[], size_t))
-{
-    for (size_t i = 0; i < rows - 1; ++i)
-        for (size_t j = 0; j < rows - i - 1; ++j)
-            if (compar(matrix[j], matrix[j + 1], columns) > 0)
-                swap_array(matrix[j], matrix[j + 1], columns);
+    for (size_t j = 0; j < columns / 2; ++j)
+        for (size_t i = j; j < rows - i; ++i)
+        {
+            int tmp = matrix[i][j];
+            matrix[i][j] = matrix[i][columns - j - 1];
+            matrix[i][columns - j - 1] = tmp;
+        }
 }
 
 
@@ -95,7 +71,7 @@ int main(void)
         return INCORRECT_MATRIX_ELEMENT;
     }
     
-    sort_matrix(matrix, rows, columns, compare_by_smallest_elem);
+    symmetric_column_swap(matrix, rows, columns);
 
     printf("Modified matrix:\n");
     print_matrix(matrix, rows, columns);

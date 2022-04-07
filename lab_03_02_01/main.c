@@ -17,40 +17,56 @@
 #define MATRIX_WAS_NOT_CHANGED 5
 
 
-bool number_contains_digit(int number, int digit)
+int product_of_digit(int x)
 {
-    do
+    int product = 1;
+    while (x)
     {
-        if (abs(number % 10) == digit)
-            return true;
-        number /= 10;
-    } while (number);
-    return false;
+        product *= abs(x % 10);
+        x /= 10;
+    }
+    return product;
 }
 
 
-size_t del_columns_if_digit_contains(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int digit)
+void index_min_by_product_of_digit(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, size_t *i_row, size_t *i_col)
 {
-    size_t columns_after = 0;
-    for (size_t j = 0; j < columns; ++j)
+    int min_product = product_of_digit(matrix[0][0]);
+    size_t row_index = 0;
+    size_t column_index = 0;
+    for (size_t i = 0; i < rows; ++i)
     {
-        bool contains = false;
-        for (size_t i = 0; i < rows; ++i)
-            if (number_contains_digit(matrix[i][j], digit))
-            {
-                contains = true;
-                break;
-            }
-
-        if (!contains)
+        for (size_t j = 0; j < columns; ++j)
         {
-            for (size_t i = 0; i < rows; ++i)
-                matrix[i][columns_after] = matrix[i][j];
-            ++columns_after;
+            int current_product = product_of_digit(matrix[i][j]);
+            if (current_product < min_product)
+            {
+                row_index = i;
+                column_index = j;
+                min_product = current_product;
+            }
         }
     }
-    return columns_after;
+    *i_row = row_index;
+    *i_col = column_index;
 }
+
+
+void delete_column(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, size_t to_del)
+{
+    for (size_t j = to_del; j < columns - 1; ++j)
+        for (size_t i = 0; i < rows; ++i)
+            matrix[i][j] = matrix[i][j + 1];
+}
+
+
+void delete_row(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, size_t to_del)
+{
+    for (size_t i = to_del; i < rows - 1; ++i)
+        for (size_t j = 0; j < columns; ++j)
+            matrix[i][j] = matrix[i + 1][j];
+}
+
 
 int scan_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
 {
@@ -96,17 +112,15 @@ int main(void)
         return INCORRECT_MATRIX_ELEMENT;
     }
 
-    int key_digit;
-    printf("Enter key number: ");
-    if (scanf("%d", &key_digit) != 1 || key_digit < 0 || key_digit > 9)
-    {
-        printf("Error: invalid key number");
-        return INCORRECT_KEY_NUMBER;
-    }
+    size_t row_min, col_min;
+    index_min_by_product_of_digit(matrix, rows, columns, &row_min, &col_min);
+    delete_row(matrix, rows, columns, row_min);
+    --rows;
+    delete_column(matrix, rows, columns, col_min);
+    --columns;
 
-    columns = del_columns_if_digit_contains(matrix, rows, columns, key_digit);
 
-    if (!columns)
+    if (!rows || !columns)
     {
         printf("Matrix is empty");
         return EMPTY_MATRIX;

@@ -14,13 +14,12 @@
 #define INCORRECT_MATRIX_ELEMENT 2
 
 
-int min(const int array[], size_t len)
+int product(const int array[], size_t len)
 {
-    int minimum = array[0];
-    for (size_t i = 1; i < len; ++i)
-        if (array[i] < minimum)
-            minimum = array[i];
-    return minimum;
+    int result = 1;
+    for (size_t i = 0; i < len; ++i)
+        result *= array[i];
+    return result;
 }
 
 
@@ -37,7 +36,7 @@ void swap_array(int first[], int second[], size_t len)
 
 int compare_by_smallest_elem(const int first[], const int second[], size_t len)
 {
-    return min(second, len) - min(first, len);
+    return product(first, len) - product(second, len);
 }
 
 
