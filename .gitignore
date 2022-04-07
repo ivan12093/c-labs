@@ -8,3 +8,4 @@
 *.gcno
 *.gcov
 *.log
+.vscode
