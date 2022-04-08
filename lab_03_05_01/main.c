@@ -88,8 +88,8 @@ int scan_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
     for (size_t i = 0; i < rows; ++i)
         for (size_t j = 0; j < columns; ++j)
             if (scanf("%d", &matrix[i][j]) != 1)
-                return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+                return true;
+    return false;
 }
 
 

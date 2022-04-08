@@ -21,7 +21,7 @@ bool is_monotonic(const int array[], size_t array_size)
 
     // sign shows what sequence do: decreasing -1, increasing 1, equality - 0 
     int sign = (array[1] - array[0] > 0) - (array[1] - array[0] < 0);
-    int new_sign;
+    int new_sign = sign;
 
     for (size_t i = 1; i < array_size - 1; ++i)
     {
@@ -45,13 +45,13 @@ void mask_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int ma
         mask[i] = predicate(matrix[i], columns);
 }
 
-int scan_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
+bool scan_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
 {
     for (size_t i = 0; i < rows; ++i)
         for (size_t j = 0; j < columns; ++j)
             if (scanf("%d", &matrix[i][j]) != 1)
-                return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+                return true;
+    return false;
 }
 
 

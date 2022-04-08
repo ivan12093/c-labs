@@ -26,11 +26,11 @@ void swap(int *x, int *y)
 
 bool is_prime(int x)
 {
-    if (x < 2)
+    if (x < 2 || (x != 2 && x % 2 == 0))
         return false;
 
-    int square_root = (int)sqrt(x) + 1;
-    for (int i = 2; i < square_root; ++i)
+    double square_root = round(sqrt(x)) + 1;
+    for (int i = 3; i < square_root; i += 2)
         if (x % i == 0)
             return false;
     return true;
@@ -84,8 +84,8 @@ int scan_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
     for (size_t i = 0; i < rows; ++i)
         for (size_t j = 0; j < columns; ++j)
             if (scanf("%d", &matrix[i][j]) != 1)
-                return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+                return true;
+    return false;
 }
 
 

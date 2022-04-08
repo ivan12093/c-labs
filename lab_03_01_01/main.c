@@ -29,13 +29,13 @@ void mask_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int ma
         mask[i] = predicate(matrix[i], columns);
 }
 
-int scan_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
+bool scan_matrix(int matrix[][ROW_CAPACITY], size_t rows, size_t columns)
 {
     for (size_t i = 0; i < rows; ++i)
         for (size_t j = 0; j < columns; ++j)
             if (scanf("%d", &matrix[i][j]) != 1)
-                return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+                return true;
+    return false;
 }
 
 
@@ -55,7 +55,7 @@ int main(void)
     if (scanf("%zu%zu", &rows, &columns) != 2 || rows > MAX_ROWS || 
         rows < MIN_ROWS || columns > MAX_COLUMNS || columns < MIN_COLUMNS)
     {
-        printf("Error: incorrect matrix size");
+        printf("Error: incorrect matrix size\n");
         return INCORRECT_MATRIX_SIZE;
     }
 
@@ -63,7 +63,7 @@ int main(void)
     printf("Enter elements of matrix:\n");
     if (scan_matrix(matrix, rows, columns))
     {
-        printf("Error: incorrect matrix element");
+        printf("Error: incorrect matrix element\n");
         return INCORRECT_MATRIX_ELEMENT;
     }
 

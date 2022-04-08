@@ -12,8 +12,6 @@
 #define MIN_COLUMNS 1
 
 #define INCORRECT_MATRIX_SIZE 1
-#define INCORRECT_MATRIX_ELEMENT 2
-#define NO_PRIME_NUMBERS 3
 
 
 void fill_matrix_boustrophedon(size_t matrix[][ROW_CAPACITY], size_t rows, size_t columns)
@@ -51,7 +49,7 @@ int main(void)
     if (scanf("%zu%zu", &rows, &columns) != 2 || rows > MAX_ROWS || 
         rows < MIN_ROWS || columns > MAX_COLUMNS || columns < MIN_COLUMNS)
     {
-        printf("Error: incorrect matrix size");
+        printf("Error: incorrect matrix size\n");
         return INCORRECT_MATRIX_SIZE;
     }
 
