@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #define MIN_ARRAY_SIZE 1
 #define MAX_ARRAY_SIZE 10
@@ -41,12 +42,12 @@ size_t insert_reverse_after_positives(int array[], size_t array_size)
 }
 
 
-int scan_array(int array[], size_t array_size)
+bool scan_array(int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         if (scanf("%d", &array[i]) != 1)
-            return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+            return true;
+    return false;
 }
 
 

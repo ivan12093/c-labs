@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #define MIN_ARRAY_SIZE 2
 #define MAX_ARRAY_SIZE 10
@@ -9,16 +10,16 @@
 #define INCORRECT_ARRAY_SIZE 2
 
 
-int scan_array(int *begin, int *end)
+bool scan_array(int *begin, int *end)
 {
     for (int *i = begin; i < end; ++i)
         if (scanf("%d", i) != 1)
-            return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+            return true;
+    return false;
 }
 
 
-int min_neighboor_pair(const int *begin, const int *end)
+int min_product(const int *begin, const int *end)
 {
     int min = *begin * *(begin + 1);
     for (const int *i = begin + 1; i < end - 1; ++i)
@@ -50,7 +51,7 @@ int main(void)
         return INCORRECT_ARRAY_ELEMENT;
     }
 
-    int min_pair = min_neighboor_pair(numbers, numbers + array_size);
+    int min_pair = min_product(numbers, numbers + array_size);
     printf("Minimal pair: %d\n", min_pair);
 
     return EXIT_SUCCESS;

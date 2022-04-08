@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <math.h>
 
 #define MIN_ARRAY_SIZE 1
@@ -29,12 +30,12 @@ double geometric_mean_of_positives(int array[], size_t array_size)
 }
 
 
-int scan_array(int array[], size_t array_size)
+bool scan_array(int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         if (scanf("%d", &array[i]) != 1)
-            return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+            return true;
+    return false;
 }
 
 

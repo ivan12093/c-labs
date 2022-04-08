@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #define MIN_ARRAY_SIZE 1
 #define MAX_ARRAY_SIZE 10
@@ -22,21 +23,21 @@ void bubble_sort(int array[], size_t array_size)
 }
 
 
-int scan_array(int array[], size_t *array_size)
+bool scan_array(int array[], size_t *array_size)
 {
     int input;
     size_t i = 0;
     while (scanf("%d", &input) == 1)
     {
         if (i == *array_size)
-            return ARRAY_OVERFLOW;
+            return true;
         
         array[i] = input;
         ++i;
     }
 
     *array_size = i;
-    return EXIT_SUCCESS;
+    return false;
 }
 
 
@@ -55,7 +56,7 @@ int main(void)
     int numbers[ARRAY_CAPACITY];
 
     printf("Enter elements of the array: \n");
-    if (scan_array(numbers, &array_size) == ARRAY_OVERFLOW)
+    if (scan_array(numbers, &array_size))
         return_code = ARRAY_OVERFLOW;
 
     if (array_size < MIN_ARRAY_SIZE)

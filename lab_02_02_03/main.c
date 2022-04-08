@@ -51,12 +51,12 @@ bool is_narcissistic(int a)
 }
 
 
-int scan_array(int array[], size_t array_size)
+bool scan_array(int array[], size_t array_size)
 {
     for (size_t i = 0; i < array_size; ++i)
         if (scanf("%d", &array[i]) != 1)
-            return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+            return true;
+    return false;
 }
 
 
@@ -68,7 +68,7 @@ void print_array(const int array[], size_t array_size)
 }
 
 
-size_t copy_if_narcissistic(const int src[], size_t array_size, int dest[])
+size_t copy_narcissistic(const int src[], size_t array_size, int dest[])
 {
     size_t len_narciss = 0;
     for (size_t i = 0; i < array_size; ++i)
@@ -101,7 +101,7 @@ int main(void)
     }
 
     int narcissistic_numbers[ARRAY_CAPACITY];
-    size_t len_narciss = copy_if_narcissistic(numbers, array_size, narcissistic_numbers);
+    size_t len_narciss = copy_narcissistic(numbers, array_size, narcissistic_numbers);
 
     if (!len_narciss)
     {
