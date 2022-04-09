@@ -9,3 +9,4 @@
 *.gcov
 *.log
 .vscode
+check_lab.sh
