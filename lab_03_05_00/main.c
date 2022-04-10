@@ -29,8 +29,7 @@ bool is_prime(int x)
     if (x < 2 || (x != 2 && x % 2 == 0))
         return false;
 
-    double square_root = round(sqrt(x)) + 1;
-    for (int i = 3; i < square_root; i += 2)
+    for (int i = 3; i * i <= x; i += 2)
         if (x % i == 0)
             return false;
     return true;

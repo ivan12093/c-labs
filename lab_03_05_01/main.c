@@ -16,15 +16,7 @@
 #define NO_PRIME_NUMBERS 3
 
 
-void swap(int *x, int *y)
-{
-    int tmp = *x;
-    *x = *y;
-    *y = tmp;
-}
-
-
-bool digit_sum_ge_10(int x)
+bool digit_sum_gt_10(int x)
 {
     int sum_of_digit = 0;
     while (x)
@@ -61,21 +53,21 @@ void shift_left_array(int array[], size_t len, size_t times)
 }
 
 
-size_t copy_if_digit_sum_ge_10(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int array[])
+size_t copy_if_digit_sum_gt_10(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int array[])
 {
     size_t len_array = 0;
     for (size_t i = 0; i < rows; ++i)
-        len_array += copy_if(matrix[i], columns, array + len_array, digit_sum_ge_10);
+        len_array += copy_if(matrix[i], columns, array + len_array, digit_sum_gt_10);
     return len_array;
 }
 
 
-void overwrite_digit_sum_ge_10(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int array[])
+void overwrite_digit_sum_gt_10(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, int array[])
 {
     size_t arr_index = 0;
     for (size_t i = 0; i < rows; ++i)
         for (size_t j = 0; j < columns; ++j)
-            if (digit_sum_ge_10(matrix[i][j]))
+            if (digit_sum_gt_10(matrix[i][j]))
             {
                 matrix[i][j] = array[arr_index];
                 ++arr_index;
@@ -129,14 +121,14 @@ int main(void)
     }
     
     int numbers[ROW_CAPACITY * COLUMN_CAPACITY];
-    size_t count_numbers = copy_if_digit_sum_ge_10(matrix, rows, columns, numbers);
+    size_t count_numbers = copy_if_digit_sum_gt_10(matrix, rows, columns, numbers);
     if (!count_numbers)
     {
         printf("Error: no numbers with sum of digit greater than 10\n");
         return NO_PRIME_NUMBERS;
     }
     shift_left_array(numbers, count_numbers, 3);
-    overwrite_digit_sum_ge_10(matrix, rows, columns, numbers);
+    overwrite_digit_sum_gt_10(matrix, rows, columns, numbers);
 
     printf("Modified matrix:\n");
     print_matrix(matrix, rows, columns);
