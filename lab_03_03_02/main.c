@@ -34,7 +34,7 @@ void swap_array(int first[], int second[], size_t len)
 }
 
 
-int compare_by_smallest_elem(const int first[], const int second[], size_t len)
+int compare_arrays_product(const int first[], const int second[], size_t len)
 {
     return product(first, len) - product(second, len);
 }
@@ -94,7 +94,7 @@ int main(void)
         return INCORRECT_MATRIX_ELEMENT;
     }
     
-    sort_matrix(matrix, rows, columns, compare_by_smallest_elem);
+    sort_matrix(matrix, rows, columns, compare_arrays_product);
 
     printf("Modified matrix:\n");
     print_matrix(matrix, rows, columns);
