@@ -19,23 +19,23 @@ bool is_monotonic(const int array[], size_t array_size)
     if (array_size < 2)
         return false;
 
-    // sign shows what sequence do: decreasing -1, increasing 1, equality - 0 
-    int sign = (array[1] - array[0] > 0) - (array[1] - array[0] < 0);
-    int new_sign = sign;
-
-    for (size_t i = 1; i < array_size - 1; ++i)
-    {
-        new_sign = (array[i + 1] - array[i] > 0) - (array[i + 1] - array[i] < 0);
-
-        if (sign && new_sign)
+    bool increasing = true;
+    for (size_t i = 1; i < array_size; ++i)
+        if (array[i] < array[i - 1])
         {
-            if (sign != new_sign)
-                return false;
-            sign = new_sign;
+            increasing = false;
+            break;
         }
-    }
+    
+    bool decreasing = true;
+    for (size_t i = 1; i < array_size; ++i)
+        if (array[i] > array[i - 1])
+        {
+            decreasing = false;
+            break;
+        }
 
-    return (!(sign && new_sign) || sign == new_sign);
+    return decreasing || increasing;
 }
 
 
