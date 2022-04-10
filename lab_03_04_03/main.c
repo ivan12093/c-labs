@@ -57,7 +57,7 @@ int main(void)
 
     printf("Enter the number of rows and columns in the matrix:\n");
     if (scanf("%zu%zu", &rows, &columns) != 2 || rows > MAX_ROWS || 
-        rows < MIN_ROWS || columns > MAX_COLUMNS || columns < MIN_COLUMNS)
+        rows < MIN_ROWS || columns > MAX_COLUMNS || columns < MIN_COLUMNS || rows != columns)
     {
         printf("Error: incorrect matrix size");
         return INCORRECT_MATRIX_SIZE;
