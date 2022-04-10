@@ -15,33 +15,33 @@
 #define EMPTY_MATRIX 3
 
 
-int product_of_digits(int x)
+int sum_of_digits(int x)
 {
-    int product = 1;
+    int sum = 0;
     while (x)
     {
-        product *= abs(x % 10);
+        sum += abs(x % 10);
         x /= 10;
     }
-    return product;
+    return sum;
 }
 
 
-void index_min_by_product_of_digit(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, size_t *i_row, size_t *i_col)
+void index_min_sum_of_digits(int matrix[][ROW_CAPACITY], size_t rows, size_t columns, size_t *i_row, size_t *i_col)
 {
-    int min_product = product_of_digits(matrix[0][0]);
+    int min_sum = sum_of_digits(matrix[0][0]);
     size_t row_index = 0;
     size_t column_index = 0;
     for (size_t i = 0; i < rows; ++i)
     {
         for (size_t j = 0; j < columns; ++j)
         {
-            int current_product = product_of_digits(matrix[i][j]);
-            if (current_product < min_product)
+            int current_sum = sum_of_digits(matrix[i][j]);
+            if (current_sum < min_sum)
             {
                 row_index = i;
                 column_index = j;
-                min_product = current_product;
+                min_sum = current_sum;
             }
         }
     }
@@ -113,7 +113,7 @@ int main(void)
     }
 
     size_t row_min, col_min;
-    index_min_by_product_of_digit(matrix, rows, columns, &row_min, &col_min);
+    index_min_sum_of_digits(matrix, rows, columns, &row_min, &col_min);
     delete_row(matrix, &rows, columns, row_min);
     delete_column(matrix, rows, &columns, col_min);
 
