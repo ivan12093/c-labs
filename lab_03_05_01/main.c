@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <math.h>
 
 #define COLUMN_CAPACITY 256
 #define ROW_CAPACITY 256
@@ -124,7 +123,7 @@ int main(void)
     size_t count_numbers = copy_if_digit_sum_gt_10(matrix, rows, columns, numbers);
     if (!count_numbers)
     {
-        printf("Error: no numbers with sum of digit greater than 10\n");
+        printf("Error: no numbers with sum of digit greater than ten\n");
         return NO_NUMBERS_WITH_SUM_OF_DIGITS_GT_10;
     }
     shift_left_array(numbers, count_numbers, 3);

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <math.h>
 
 #define COLUMN_CAPACITY 256
 #define ROW_CAPACITY 256
