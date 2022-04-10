@@ -13,7 +13,7 @@
 
 #define INCORRECT_MATRIX_SIZE 1
 #define INCORRECT_MATRIX_ELEMENT 2
-#define NO_PRIME_NUMBERS 3
+#define NO_NUMBERS_WITH_SUM_OF_DIGITS_GT_10 3
 
 
 bool digit_sum_gt_10(int x)
@@ -108,7 +108,7 @@ int main(void)
     if (scanf("%zu%zu", &rows, &columns) != 2 || rows > MAX_ROWS || 
         rows < MIN_ROWS || columns > MAX_COLUMNS || columns < MIN_COLUMNS)
     {
-        printf("Error: incorrect matrix size");
+        printf("Error: incorrect matrix size\n");
         return INCORRECT_MATRIX_SIZE;
     }
 
@@ -125,7 +125,7 @@ int main(void)
     if (!count_numbers)
     {
         printf("Error: no numbers with sum of digit greater than 10\n");
-        return NO_PRIME_NUMBERS;
+        return NO_NUMBERS_WITH_SUM_OF_DIGITS_GT_10;
     }
     shift_left_array(numbers, count_numbers, 3);
     overwrite_digit_sum_gt_10(matrix, rows, columns, numbers);
