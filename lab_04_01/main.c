@@ -56,7 +56,7 @@ char *my_strrchr(const char *s, int c)
         if (s[i] == c)
             p = (char *)s + i;
     if (s[i] == c)
-            p = (char *)s + i;
+        p = (char *)s + i;
     return p;
 }
 
