@@ -8,7 +8,6 @@ char *my_strpbrk(const char *s, const char *accept)
         for (size_t j = 0; accept[j] != '\0'; ++j)
             if (s[i] == accept[j])
                 return (char *)s + i;
-
     return NULL;
 }
 
@@ -40,17 +39,23 @@ size_t my_strcspn(const char *s, const char *reject)
 
 char *my_strchr(const char *s, int c)
 {
-    for (size_t i = 0; s[i] != '\0'; ++i)
+    size_t i;
+    for (i = 0; s[i] != '\0'; ++i)
         if (s[i] == c)
             return (char *)s + i;
+    if (s[i] == c)
+        return (char *)s + i;
     return NULL;
 }
  
 char *my_strrchr(const char *s, int c)
 {
     char *p = NULL;
-    for (size_t i = 0; s[i] != '\0'; ++i)
+    size_t i;
+    for (i = 0; s[i] != '\0'; ++i)
         if (s[i] == c)
+            p = (char *)s + i;
+    if (s[i] == c)
             p = (char *)s + i;
     return p;
 }
@@ -166,6 +171,10 @@ int test_second(int (*cmp)(const char *, int))
         ++total_failed;
 
     c = 'z';
+    if (cmp(s2, c))
+        ++total_failed;
+
+    c = '\0';
     if (cmp(s2, c))
         ++total_failed;
 
