@@ -21,12 +21,6 @@ int scan_string(char *buf, int size)
     return EXIT_SUCCESS;
 }
 
-void copy(const char *src, char *dst, size_t size)
-{
-    for (size_t i = 0; i < size; ++i)
-        dst[i] = src[i];
-}
-
 size_t split_str(const char *s, const char *delim, char (*splitted)[WORD_SIZE])
 {
     size_t splitted_size = 0;
@@ -45,7 +39,7 @@ size_t split_str(const char *s, const char *delim, char (*splitted)[WORD_SIZE])
         {
             word[word_size] = '\0';
             ++word_size;
-            copy(word, splitted[splitted_size], word_size);
+            strcpy(splitted[splitted_size], word);
             ++splitted_size;
             word_size = 0;
         }
@@ -53,7 +47,7 @@ size_t split_str(const char *s, const char *delim, char (*splitted)[WORD_SIZE])
     {
         word[word_size] = '\0';
         ++word_size;
-        copy(word, splitted[splitted_size], word_size);
+        strcpy(splitted[splitted_size], word);
         ++splitted_size;
         word_size = 0;
     }
