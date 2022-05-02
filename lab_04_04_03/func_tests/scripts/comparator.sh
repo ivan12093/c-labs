@@ -3,10 +3,9 @@
 # $1 - first file
 # $2 - second file
 
-diff "$1" "$2" > /dev/null 2>&1
-res=$?
+res=$(cmp "$1" "$2")
 
-if [ $res ]; then
+if [ "$res" == "" ]; then
     exit 0
 else
     exit 1
