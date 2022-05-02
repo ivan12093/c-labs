@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char *my_strpbrk(const char *s, const char *accept)
+char *my_strpbrk(char *s, char *accept)
 {
     for (size_t i = 0; s[i] != '\0'; ++i)
         for (size_t j = 0; accept[j] != '\0'; ++j)
             if (s[i] == accept[j])
-                return (char *)s + i;
+                return s + i;
     return NULL;
 }
 
-size_t my_strspn(const char *s, const char *accept)
+size_t my_strspn(char *s, char *accept)
 {
     int flag = 1;
     size_t i;
@@ -27,7 +27,7 @@ size_t my_strspn(const char *s, const char *accept)
     return i;
 }
 
-size_t my_strcspn(const char *s, const char *reject)
+size_t my_strcspn(char *s, char *reject)
 {
     size_t i;
     for (i = 0; s[i] != '\0'; ++i)
@@ -37,55 +37,55 @@ size_t my_strcspn(const char *s, const char *reject)
     return i;
 }
 
-char *my_strchr(const char *s, int c)
+char *my_strchr(char *s, int c)
 {
     size_t i;
     for (i = 0; s[i] != '\0'; ++i)
         if (s[i] == c)
-            return (char *)s + i;
+            return s + i;
     if (s[i] == c)
-        return (char *)s + i;
+        return s + i;
     return NULL;
 }
  
-char *my_strrchr(const char *s, int c)
+char *my_strrchr(char *s, int c)
 {
     char *p = NULL;
     size_t i;
     for (i = 0; s[i] != '\0'; ++i)
         if (s[i] == c)
-            p = (char *)s + i;
+            p = s + i;
     if (s[i] == c)
-        p = (char *)s + i;
+        p = s + i;
     return p;
 }
 
-int compare_strpbrk(const char *s1, const char *s2)
+int compare_strpbrk(char *s1, char *s2)
 {
     return my_strpbrk(s1, s2) == strpbrk(s1, s2);
 }
 
-int compare_strspn(const char *s1, const char *s2)
+int compare_strspn(char *s1, char *s2)
 {
     return my_strspn(s1, s2) == strspn(s1, s2);
 }
 
-int compare_strcspn(const char *s1, const char *s2)
+int compare_strcspn(char *s1, char *s2)
 {
     return my_strcspn(s1, s2) == strcspn(s1, s2);
 }
 
-int compare_strchr(const char *s, int c)
+int compare_strchr(char *s, int c)
 {
     return my_strchr(s, c) == strchr(s, c);
 }
 
-int compare_strrchr(const char *s, int c)
+int compare_strrchr(char *s, int c)
 {
     return my_strrchr(s, c) == strrchr(s, c);
 }
 
-int test_first(int (*cmp)(const char *, const char *))
+int test_first(int (*cmp)(char *, char *))
 {
     int total_failed = 0;
     
@@ -130,7 +130,7 @@ int test_first(int (*cmp)(const char *, const char *))
     return total_failed;
 }
 
-int test_second(int (*cmp)(const char *, int))
+int test_second(int (*cmp)(char *, int))
 {
     int total_failed = 0;
 

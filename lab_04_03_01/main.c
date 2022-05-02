@@ -10,6 +10,7 @@
 #define BUFFER_OVERFLOW 2
 #define TOO_LONG_WORD 3
 #define NO_WORDS 4
+#define EMPTY_RESULT 5
 
 int scan_string(char *buf, int size)
 {
@@ -53,7 +54,7 @@ size_t str_unique(const char *s, char *dst)
 {
     size_t len_dst = 0;
     for (size_t i = 0; s[i] != '\0'; ++i)
-        if ((char *)s + i == strchr(s, s[i]))
+        if (s + i == strchr(s, s[i]))
         {
             dst[len_dst] = s[i];
             ++len_dst;
@@ -65,14 +66,14 @@ size_t str_unique(const char *s, char *dst)
 void join(char (*words)[WORD_SIZE], size_t len, char *dst)
 {
     dst[0] = '\0';
-    char sep = ' ';
+    char *sep = " ";
     char transformed[WORD_SIZE];
     for (size_t i = 1; i < len; ++i)
         if (strcmp(words[len - 1], words[len - i - 1]))
         {
             str_unique(words[len - i - 1], transformed);
             strcat(dst, transformed);
-            strncat(dst, &sep, 1);
+            strcat(dst, sep);
         }
     dst[strlen(dst) - 1] = '\0';
 }
@@ -80,7 +81,9 @@ void join(char (*words)[WORD_SIZE], size_t len, char *dst)
 int main(void)
 {
     char str[BUF_SIZE];
-    scan_string(str, BUF_SIZE);
+    int return_code;
+    if ((return_code = scan_string(str, BUF_SIZE)))
+        return return_code;
 
     const char *delim = " ,;:-.!?\n";
     char words[BUF_SIZE][WORD_SIZE];
@@ -94,5 +97,7 @@ int main(void)
 
     char transformed[BUF_SIZE];
     join(words, words_count, transformed);
+    if (strlen(transformed) == 0)
+        return EMPTY_RESULT;
     printf("Result: %s\n", transformed);
 }
