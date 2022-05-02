@@ -1,1 +1,1 @@
-Result:string1 seq sweq string 
+Result: string1 seq sweq string 
