@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
-#define BUF_SIZE 1024
+#define BUF_SIZE 257
 #define WORD_SIZE 17
 
 #define EMPTY_STRING 1
@@ -31,7 +32,7 @@ size_t split_str(const char *s, const char *delim, char (*splitted)[WORD_SIZE])
         if (strchr(delim, s[i]) == NULL)
         {
             if (word_size + 1 > WORD_SIZE - 1)
-                return 0;
+                return SIZE_MAX;
             word[word_size] = s[i];
             ++word_size;
         }
@@ -102,12 +103,12 @@ int main(void)
 
     char words_array1[BUF_SIZE][WORD_SIZE];
     size_t len1 = split_str(str1, delim, words_array1);
-    if (!len1)
+    if (len1 == SIZE_MAX)
         return TOO_LONG_WORD;
 
     char words_array2[BUF_SIZE][WORD_SIZE];
     size_t len2 = split_str(str2, delim, words_array2);
-    if (!len2)
+    if (len2 == SIZE_MAX)
         return TOO_LONG_WORD;
 
     char unique[BUF_SIZE * 2][WORD_SIZE];
