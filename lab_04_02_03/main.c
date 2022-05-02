@@ -73,14 +73,16 @@ size_t unique_words(char (*src1)[WORD_SIZE], size_t len1, char (*src2)[WORD_SIZE
 {
     size_t dst_size = 0;
     for (size_t i = 0; i < len1; ++i)
-        if (!contains(src2, len2, src1[i]) && !contains(dst, dst_size, src1[i]))
+        if (!contains(src2, len2, src1[i]) && !contains(src1, i, src1[i]) && 
+            !contains(src1 + i + 1, len1 - i - 1, src1[i]))
         {
             strcpy(dst[dst_size], src1[i]);
             ++dst_size;
         }
     
     for (size_t i = 0; i < len2; ++i)
-        if (!contains(src1, len1, src2[i]) && !contains(dst, dst_size, src2[i]))
+        if (!contains(src1, len1, src2[i]) && !contains(src2, i, src2[i]) &&
+            !contains(src2 + i + 1, len2 - i - 1, src2[i]))
         {
             strcpy(dst[dst_size], src2[i]);
             ++dst_size;

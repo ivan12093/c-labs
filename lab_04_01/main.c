@@ -62,96 +62,70 @@ char *my_strrchr(const char *s, int c)
 
 int compare_strpbrk(const char *s1, const char *s2)
 {
-    if (my_strpbrk(s1, s2) == strpbrk(s1, s2))
-        return EXIT_SUCCESS;
-    return EXIT_FAILURE;
+    return my_strpbrk(s1, s2) == strpbrk(s1, s2);
 }
 
 int compare_strspn(const char *s1, const char *s2)
 {
-    if (my_strspn(s1, s2) == strspn(s1, s2))
-        return EXIT_SUCCESS;
-    return EXIT_FAILURE;
+    return my_strspn(s1, s2) == strspn(s1, s2);
 }
 
 int compare_strcspn(const char *s1, const char *s2)
 {
-    if (my_strcspn(s1, s2) == strcspn(s1, s2))
-        return EXIT_SUCCESS;
-    return EXIT_FAILURE;
+    return my_strcspn(s1, s2) == strcspn(s1, s2);
 }
 
 int compare_strchr(const char *s, int c)
 {
-    if (my_strchr(s, c) == strchr(s, c))
-        return EXIT_SUCCESS;
-    return EXIT_FAILURE;
+    return my_strchr(s, c) == strchr(s, c);
 }
 
 int compare_strrchr(const char *s, int c)
 {
-    if (my_strrchr(s, c) == strrchr(s, c))
-        return EXIT_SUCCESS;
-    return EXIT_FAILURE;
+    return my_strrchr(s, c) == strrchr(s, c);
 }
 
 int test_first(int (*cmp)(const char *, const char *))
 {
     int total_failed = 0;
+    
     char *s1 = "test_string";
     char *s2 = "pillow";
 
-    if (cmp(s1, s2))
-        ++total_failed;
-
-    if (cmp(s2, s1))
-        ++total_failed;
+    total_failed += !cmp(s1, s2);
+    total_failed += !cmp(s2, s1);
 
     char *s3 = "";
     char *s4 = "ABCDEF";
 
-    if (cmp(s3, s4))
-        ++total_failed;
-
-    if (cmp(s4, s3))
-        ++total_failed;
+    total_failed += !cmp(s3, s4);
+    total_failed += !cmp(s4, s3);
 
     char *s6 = "test";
-    if (cmp(s6, s6))
-        ++total_failed;
+    total_failed += !cmp(s6, s6);
 
     char *s7 = "ABCDEF";
     char *s8 = "abcdef";
 
-    if (cmp(s7, s8))
-        ++total_failed;
+    total_failed += !cmp(s7, s8);
 
     char *s9 = "Hello";
     char *s10 = "Lowr";
 
-    if (cmp(s9, s10))
-        ++total_failed;
-
-    if (cmp(s10, s9))
-        ++total_failed;
+    total_failed += !cmp(s9, s10);
+    total_failed += !cmp(s10, s9);
 
     char *s11 = "wtwtwatgahat";
     char *s12 = "wt";
 
-    if (cmp(s11, s12))
-        ++total_failed;
-
-    if (cmp(s12, s11))
-        ++total_failed;
+    total_failed += !cmp(s11, s12);
+    total_failed += !cmp(s12, s11);
 
     char *s13 = "wtwtwtwtw";
     char *s14 = "a";
 
-    if (cmp(s13, s14))
-        ++total_failed;
-
-    if (cmp(s14, s13))
-        ++total_failed;
+    total_failed += !cmp(s13, s14);
+    total_failed += !cmp(s14, s13);
 
     return total_failed;
 }
@@ -162,21 +136,17 @@ int test_second(int (*cmp)(const char *, int))
 
     char *s1 = "ego sum via veritas et vita";
     char c = 'a';
-    if (cmp(s1, c))
-        ++total_failed;
+    total_failed += !cmp(s1, c);
 
     char *s2 = "wingardium leviosa";
     c = 'i';
-    if (cmp(s2, c))
-        ++total_failed;
+    total_failed += !cmp(s2, c);
 
     c = 'z';
-    if (cmp(s2, c))
-        ++total_failed;
+    total_failed += !cmp(s2, c);
 
     c = '\0';
-    if (cmp(s2, c))
-        ++total_failed;
+    total_failed += !cmp(s2, c);
 
     return total_failed;
 }
