@@ -23,11 +23,6 @@ int is_number(const char *s)
     size_t i = 0;
     const char *digits = "0123456789";
     
-    if (s[0] == '+')
-        for (i = 1; s[i] != '('; ++i)
-            if (strchr(digits, s[i]) == NULL)
-                return 0;
-
     if (strlen(s + i) < 15)
         return 0;
 
