@@ -100,4 +100,6 @@ int main(void)
     if (strlen(transformed) == 0)
         return EMPTY_RESULT;
     printf("Result: %s\n", transformed);
+
+    return EXIT_SUCCESS;
 }

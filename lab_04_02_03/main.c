@@ -119,4 +119,6 @@ int main(void)
     printf("Result: ");
     print_words(unique, len_unique);
     printf("\n");
+    
+    return EXIT_SUCCESS;
 }
