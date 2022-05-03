@@ -20,15 +20,14 @@ int scan_string(char *buf, int size)
 
 int is_number(const char *s)
 {
-    size_t i = 0;
     const char *digits = "0123456789";
     
-    if (strlen(s + i) < 15)
+    if (strlen(s) < 15)
         return 0;
 
-    int check_operator_code = s[i] == '(' && strspn(s + i + 1, digits) == 3 && s[i + 4] == ')';
-    int check_number1 = s[i + 5] == '-' && strspn(s + i + 6, digits) == 3 && s[i + 9] == '-';
-    int check_number2 = strspn(s + i + 10, digits) == 2 && s[i + 12] == '-' && strspn(s + i + 13, digits) >= 2;
+    int check_operator_code = s[0] == '(' && strspn(s + 1, digits) == 3 && s[4] == ')';
+    int check_number1 = s[5] == '-' && strspn(s + 6, digits) == 3 && s[9] == '-';
+    int check_number2 = strspn(s + 10, digits) == 2 && s[12] == '-' && strspn(s + 13, digits) >= 2;
 
     return check_operator_code && check_number1 && check_number2;
 }
