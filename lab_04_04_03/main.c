@@ -7,14 +7,20 @@
 #define EMPTY_STRING 1
 #define BUFFER_OVERFLOW 2
 
-int scan_string(char *buf, int size)
+int scan_string(char *buf, size_t size)
 {
-    if (fgets(buf, size, stdin) == NULL)
+    int chr;
+    size_t len = 0;
+    while ((chr = getchar()) != '\0' && chr != EOF && len < size)
+    {
+        buf[len] = (char) chr;
+        ++len;
+    }
+    if (!len)
         return EMPTY_STRING;
-
-    if (buf[strlen(buf) - 1] != '\n')
+    buf[len] = '\0';
+    if (getchar() != EOF)
         return BUFFER_OVERFLOW;
-    
     return EXIT_SUCCESS;
 }
 
