@@ -1,0 +1,18 @@
+Ainograd
+Makar
+2 2 2 2 
+Bulgakov
+Andrew
+4 4 4 4 
+Bulgakov
+Ivan
+5 5 4 3 
+Gazik
+Andrew
+4 4 4 4 
+Kozlik
+Maxon
+4 3 2 3 
+Pisarenko
+Dmiriy
+4 4 5 3 
